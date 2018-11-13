@@ -1,9 +1,13 @@
+import java.util.Scanner;
+ 
 public class ATM {
-	private String account;
-	private Boolean validate;
-	private int dispense;
-	private String menu;
-	private int deposit;
+	/* we need: 
+	 * Bank Account
+	 * Menu
+	 * 	Deposit --> calls to BankAccount.java deposit
+	 * 	Withdraw --> calls to BankAccount.java withdraw
+	 *  Show Balance
+	 */
+	private BankAccount BankAccount;
 	
-	/*getter and setters time*/
 }
