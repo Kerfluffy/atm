@@ -1,48 +1,61 @@
 public class BankAccount {
-    private double balance = 0;
-    private int accountNumber;
-    private int pin;
-    private AccountHolder accountHolder;
-    BankAccount(AccountHolder accountHolder, int pin, int accountNumber) {
-        this.accountHolder = accountHolder;
-        this.pin = pin;
-        this.accountNumber = accountNumber;
-    }
-    void deposit(double amount) {
-        balance += amount;
-    }
-    void withdraw(double amount) {
-    	if (balance >= amount) {
-    		balance -= amount;
-    	}
-    	else {
-    		System.out.println("Sorry, you do not have enough money in your account.");
-    	}
-    }
-    /* set time */
-    void setBalance(double balance) {
-    	this.balance = balance;
-    }
-    void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-    void setPin(int pin) {
-    	this.pin = pin;
-    }
-    void setAccountHolder(AccountHolder accountHolder) {
-    	this.accountHolder = accountHolder;
-    }
-    /* get time */
-    double getBalance() {
-        return balance;
-    }
-    int getAccountNumber() {
-        return accountNumber;
-    }
-    int getPin() {
-    	return pin;
-    }
-    AccountHolder getAccountHolder() {
-        return accountHolder;
-    }
+	
+	private static long generatedAccountNumber = 100000001L;
+	
+	private long accountNumber;
+	private double balance;
+	private User user;
+	
+	public BankAccount(double balance, User user) {
+		this.accountNumber = BankAccount.generatedAccountNumber++;
+		this.balance = balance;
+		this.user = user;
+	}
+	/* get time */
+	public long getAccountNumber() {
+		return accountNumber;
+	}
+	
+	public double getBalance() {
+		return balance;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	/* set time */
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+		
+	public int deposit(double amount) {
+		if (amount <= 0) {
+			return 0;
+		} else {
+			balance = balance + amount;
+			
+			return 1;
+		}
+	}
+	
+	public int withdraw(double amount) {
+		if (amount > balance) {
+			return 0;
+		} else if (amount <= 0) {
+			return 1;
+		} else {
+			balance = balance - amount;
+			
+			return 2;
+		}
+	}
 }
