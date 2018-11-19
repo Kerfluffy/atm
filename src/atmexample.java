@@ -2,53 +2,53 @@ import java.util.Scanner;
 
 public class ATM {
 	BankAccount bankAccount;
-	static User user;
-	ATM(BankAccount bankAccount, User user) {
+	ATM(BankAccount bankAccount) {
 		this.bankAccount = bankAccount;
-		this.user = user;
 	}
 	
 	static Scanner in = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		ATM atm = new ATM(newAccount(), user); 
+		ATM atm = new ATM(newAccount()); 
 		atm.bankMenu();
 	}
 	
 	public static BankAccount newAccount() {
 		System.out.println("Enter your personal information below");
 		System.out.print("Name: ");
-			String name = in.nextLine(); 
-		System.out.print("PIN: ");
-			int pin = in.nextInt();
-			in.nextLine();
-		System.out.print("Date of Birth ");
-			String dob = in.nextLine();
+		String name = in.nextLine(); 
+		System.out.print("SSN: ");
+		int ssn = in.nextInt();
+		in.nextLine();
+		System.out.print("Phone: ");
+		String phone = in.nextLine();
 		System.out.print("Address: ");
-			String address = in.nextLine();
+		String Address = in.nextLine();
 		
-		User user = new User(pin, name, dob, address); 
+		AccountHolder user = new AccountHolder(ssn, name, phone, Address); 
 		
 		double balance = 0;
-
+		System.out.print("PIN: ");
+		int pin = in.nextInt();
+		in.nextLine();
 		System.out.print("Account Number: ");
-			int accountNumber = in.nextInt();
+		int accountNumber = in.nextInt();
 		in.nextLine();
 
-		return new BankAccount(accountNumber, balance, user);
+		return new BankAccount(balance, accountNumber, pin, user);
 	}
 	
 	public void menu() {
 		//switch to check if user wants to continue
-		System.out.println("Want to do something else? Enter Y if you want to, enter anything else if else.");
+		System.out.println("Would you like to do something else (Y for \"Yes\", any key for \"No\"): ");
 		char choice = in.next().charAt(0); 
-			switch (choice) {
-				case 'Y':
-				bankMenu();
-			case 'y':
-				bankMenu();
-			default:
-				System.exit(0);
+		switch (choice) {
+		case 'Y':
+			bankMenu();
+		case 'y':
+			bankMenu();
+		default:
+			System.exit(0);
 		}
 	}
 	
@@ -56,7 +56,6 @@ public class ATM {
 		//implement system to check entered number to previous number
 		boolean menuSet = true;
 		boolean accountNum = true;
-		
 		int check = 0;
 		while (menuSet) {
 			while (accountNum) {
@@ -72,7 +71,7 @@ public class ATM {
 				}
 				System.out.print("Enter your PIN: ");
 				int newPin = in.nextInt();
-				if (newPin != this.user.getPIN()) {
+				if (newPin != this.bankAccount.pin) {
 					System.out.println("Please try again.");
 				}
 				else {
@@ -80,8 +79,9 @@ public class ATM {
 				}
 			}
 					
-			//Prompt the user for what action to perform
-			System.out.println("Enter 1 to withdraw, enter 2 to deposit, or enter 3 to check balance: ");
+			//options menu with choices
+			System.out.println("What would you like to do?");
+			System.out.println("1. Withdraw\n2. Deposit\n3. Check Balance");
 					
 			//loop to check if choice is valid
 			int menuLoop = 0;

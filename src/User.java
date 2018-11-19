@@ -12,7 +12,7 @@ public class User {
 		this.address = address;
 	}
 	
-	/* get time */
+	/* get section */
 	public int getPIN() {
 		return pin;
 	}
@@ -29,7 +29,7 @@ public class User {
 		return address;
 	}
 	
-	/* set time */
+	/* set section */
 	public void setPIN(int pin) {
 		this.pin = pin;
 	}

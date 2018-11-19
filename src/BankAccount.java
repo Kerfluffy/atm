@@ -2,16 +2,16 @@ public class BankAccount {
 	
 	private static long generatedAccountNumber = 100000001L;
 	
-	private long accountNumber;
+	long accountNumber;
 	private double balance;
 	private User user;
 	
-	public BankAccount(double balance, User user) {
+	public BankAccount(long accountNumber, double balance, User user) {
 		this.accountNumber = BankAccount.generatedAccountNumber++;
 		this.balance = balance;
 		this.user = user;
 	}
-	/* get time */
+	/* get section */
 	public long getAccountNumber() {
 		return accountNumber;
 	}
@@ -23,8 +23,7 @@ public class BankAccount {
 	public User getUser() {
 		return user;
 	}
-	
-	/* set time */
+	/* set section */
 	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
